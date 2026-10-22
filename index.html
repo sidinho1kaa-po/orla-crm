@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <title>Orla CRM</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">O</div>
+          <div>
+            <strong>orla</strong>
+            <span>ASSESSORIA DE MARKETING</span>
+          </div>
+        </div>
+
+        <div class="workspace-switcher">
+          <div class="workspace-avatar">AC</div>
+          <div class="workspace-copy">
+            <strong>Orla Marketing</strong>
+            <span>Operação da agência</span>
+          </div>
+          <span class="chevron">⌄</span>
+        </div>
+
+        <nav class="main-nav" aria-label="Navegação principal">
+          <p class="nav-label">VISÃO GERAL</p>
+          <button class="nav-item active" data-view="dashboard"><span class="nav-icon">◈</span>Dashboard</button>
+          <button class="nav-item" data-view="contacts"><span class="nav-icon">♙</span>Contatos <b id="contact-nav-count">0</b></button>
+          <button class="nav-item" data-view="pipeline"><span class="nav-icon">▥</span>Pipeline</button>
+          <button class="nav-item" data-view="campaigns"><span class="nav-icon">◌</span>Campanhas <b id="campaign-nav-count">0</b></button>
+          <button class="nav-item" data-view="tasks"><span class="nav-icon">✓</span>Tarefas <b class="nav-badge" id="task-nav-count">0</b></button>
+          <p class="nav-label nav-label-spaced">GESTÃO</p>
+          <button class="nav-item" data-view="reports"><span class="nav-icon">▤</span>Relatórios</button>
+          <button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span>Configurações</button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="help-card">
+            <span class="help-icon">?</span>
+            <div><strong>Precisa de ajuda?</strong><small>Fale com nosso time</small></div>
+          </div>
+          <div class="user-card">
+            <div class="user-avatar">MF</div>
+            <div><strong>Marina Freitas</strong><small>Administradora</small></div>
+            <span class="more">•••</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <button class="mobile-menu" id="mobile-menu" aria-label="Abrir menu">☰</button>
+          <div class="breadcrumb"><span>Workspace</span><i>/</i><strong id="current-view-label">Dashboard</strong></div>
+          <div class="topbar-actions">
+            <button class="icon-button notification" aria-label="Notificações">♧<span></span></button>
+            <div class="top-user"><div class="user-avatar small">MF</div><span>Marina</span><b>⌄</b></div>
+          </div>
+        </header>
+
+        <div class="content-wrap">
+          <section class="page-heading">
+            <div>
+              <p class="eyebrow">PAINEL DA AGÊNCIA · QUINTA-FEIRA, 22 DE OUTUBRO</p>
+              <h1>Bom dia, Marina <span>✦</span></h1>
+              <p class="page-subtitle">Acompanhe clientes, campanhas e as próximas entregas da sua assessoria.</p>
+            </div>
+            <div class="heading-actions">
+              <button class="button secondary" id="export-data">↧ <span>Exportar</span></button>
+              <button class="button primary" id="add-contact">＋ <span>Novo contato</span></button>
+            </div>
+          </section>
+
+          <section class="metric-grid" aria-label="Resumo do negócio">
+            <article class="metric-card">
+              <div class="metric-top"><span class="metric-label">CLIENTES ATIVOS</span><span class="metric-icon purple">♙</span></div>
+              <div class="metric-value" id="active-contacts">0</div>
+              <div class="metric-change positive">↗ <strong>2 novos</strong><span>neste trimestre</span></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-top"><span class="metric-label">PROJETOS ATIVOS</span><span class="metric-icon orange">◇</span></div>
+              <div class="metric-value" id="open-deals">0</div>
+              <div class="metric-change positive">↗ <strong>+1</strong><span>vs. mês anterior</span></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-top"><span class="metric-label">RECEITA RECORRENTE</span><span class="metric-icon green">R$</span></div>
+              <div class="metric-value" id="pipeline-value">R$ 0</div>
+              <div class="metric-change positive">↗ <strong>14,6%</strong><span>vs. mês anterior</span></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-top"><span class="metric-label">ENTREGAS NA SEMANA</span><span class="metric-icon blue">✓</span></div>
+              <div class="metric-value" id="delivery-count">0</div>
+              <div class="metric-change positive">● <strong>no prazo</strong><span>acompanhamento ativo</span></div>
+            </article>
+          </section>
+
+          <section class="dashboard-grid">
+            <article class="panel pipeline-panel" id="pipeline-section">
+              <div class="panel-heading">
+                <div><h2>Pipeline de vendas</h2><p>Veja suas oportunidades por etapa.</p></div>
+                <div class="panel-actions"><button class="compact-button" id="add-deal">＋ Oportunidade</button><button class="text-button" data-view="pipeline">Ver tudo <span>→</span></button></div>
+              </div>
+              <div class="pipeline-summary" id="pipeline-summary"></div>
+              <div class="pipeline-board" id="pipeline-board"></div>
+            </article>
+
+            <article class="panel activity-panel">
+              <div class="panel-heading"><div><h2>Atividade recente</h2><p>Últimas interações da equipe.</p></div><button class="dots-button" id="clear-activity">•••</button></div>
+              <div class="activity-list" id="activity-list"></div>
+              <button class="full-width-button">Ver todas as atividades <span>→</span></button>
+            </article>
+          </section>
+
+          <section class="panel campaigns-panel" id="campaigns-section">
+            <div class="panel-heading"><div><h2>Campanhas em andamento</h2><p>Veja o que está no ar e qual é a próxima entrega de cada cliente.</p></div><div class="panel-actions"><button class="compact-button" id="add-campaign">＋ Campanha</button><button class="text-button" data-view="campaigns">Abrir visão completa <span>→</span></button></div></div>
+            <div class="campaign-grid" id="campaign-grid"></div>
+          </section>
+
+          <section class="panel contacts-panel" id="contacts-section">
+            <div class="panel-heading contacts-heading">
+              <div><h2>Contatos recentes</h2><p>Seus contatos adicionados ou atualizados recentemente.</p></div>
+              <div class="contact-tools"><label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Buscar contato..." /></label><button class="filter-button" id="filter-button">≡ <span>Filtrar</span></button></div>
+            </div>
+            <div class="filter-row" id="filter-row"><button class="filter-chip selected" data-filter="todos">Todos</button><button class="filter-chip" data-filter="lead">Leads</button><button class="filter-chip" data-filter="cliente">Clientes</button><button class="filter-chip" data-filter="inativo">Inativos</button></div>
+            <div class="table-wrap"><table><thead><tr><th>CONTATO</th><th>CONTA / SERVIÇO</th><th>ETAPA</th><th>ÚLTIMO CONTATO</th><th></th></tr></thead><tbody id="contacts-table"></tbody></table></div>
+            <div class="empty-state" id="empty-state" hidden>Nenhum contato encontrado.</div>
+          </section>
+
+          <section class="bottom-grid">
+            <article class="panel tasks-panel" id="tasks-section">
+              <div class="panel-heading"><div><h2>Próximas tarefas</h2><p>Ações para não deixar nenhuma oportunidade esfriar.</p></div><button class="compact-button" id="add-task">＋ Tarefa</button></div>
+              <div class="task-list" id="task-list"></div>
+            </article>
+            <article class="panel insights-panel" id="reports-section">
+              <div class="panel-heading"><div><h2>Saúde do negócio</h2><p>Um retrato rápido da sua operação.</p></div><span class="insight-period">Este mês</span></div>
+              <div class="health-score"><div class="score-ring"><strong id="health-score">82</strong><span>/ 100</span></div><div><strong>Seu CRM está saudável</strong><p>Continue acompanhando os leads sem atividade.</p></div></div>
+              <div class="progress-row"><div><span>Leads com próximo passo</span><strong id="follow-up-progress">72%</strong></div><div class="progress-track"><span id="follow-up-bar"></span></div></div>
+              <div class="progress-row"><div><span>Contatos completos</span><strong>94%</strong></div><div class="progress-track"><span class="complete-progress"></span></div></div>
+            </article>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="contact-modal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-heading"><div><p class="eyebrow" id="contact-modal-eyebrow">NOVO REGISTRO</p><h2 id="modal-title">Adicionar contato</h2></div><button class="close-button" id="close-modal" aria-label="Fechar">×</button></div>
+        <form id="contact-form">
+          <input type="hidden" name="id" />
+          <label>Nome completo<input name="name" required placeholder="Ex.: Ana Souza" /></label>
+          <label>E-mail<input name="email" type="email" required placeholder="ana@empresa.com" /></label>
+          <div class="form-row"><label>Empresa<input name="company" required placeholder="Nome da empresa" /></label><label>Etapa<select name="status"><option value="lead">Lead</option><option value="qualificado">Qualificado</option><option value="cliente">Cliente</option><option value="inativo">Inativo</option></select></label></div>
+          <label>Serviço de interesse<select name="service"><option>Assessoria completa</option><option>Social media</option><option>Tráfego pago</option><option>Conteúdo</option><option>Branding</option></select></label>
+          <div class="modal-actions"><button type="button" class="button secondary" id="cancel-modal">Cancelar</button><button type="submit" class="button primary">Salvar contato</button></div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-backdrop" id="deal-modal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="deal-modal-title">
+        <div class="modal-heading"><div><p class="eyebrow">PIPELINE</p><h2 id="deal-modal-title">Nova oportunidade</h2></div><button class="close-button" data-close-modal="deal-modal" aria-label="Fechar">×</button></div>
+        <form id="deal-form">
+          <label>Nome da oportunidade<input name="name" required placeholder="Ex.: Projeto de consultoria" /></label>
+          <div class="form-row"><label>Contato<input name="contact" required placeholder="Nome do contato" /></label><label>Valor<input name="value" type="number" min="0" step="100" required placeholder="R$ 0" /></label></div>
+          <label>Etapa<select name="stage"><option>Prospecção</option><option>Qualificação</option><option>Proposta</option><option>Negociação</option></select></label>
+          <div class="modal-actions"><button type="button" class="button secondary" data-close-modal="deal-modal">Cancelar</button><button type="submit" class="button primary">Criar oportunidade</button></div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-backdrop" id="task-modal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title">
+        <div class="modal-heading"><div><p class="eyebrow">ORGANIZAÇÃO</p><h2 id="task-modal-title">Nova tarefa</h2></div><button class="close-button" data-close-modal="task-modal" aria-label="Fechar">×</button></div>
+        <form id="task-form">
+          <label>O que precisa ser feito?<input name="title" required placeholder="Ex.: Ligar para o cliente" /></label>
+          <div class="form-row"><label>Relacionado a<input name="related" placeholder="Contato ou empresa" /></label><label>Prazo<input name="due" type="date" required /></label></div>
+          <div class="modal-actions"><button type="button" class="button secondary" data-close-modal="task-modal">Cancelar</button><button type="submit" class="button primary">Criar tarefa</button></div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-backdrop" id="campaign-modal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="campaign-modal-title">
+        <div class="modal-heading"><div><p class="eyebrow">OPERAÇÃO</p><h2 id="campaign-modal-title">Nova campanha</h2></div><button class="close-button" data-close-modal="campaign-modal" aria-label="Fechar">×</button></div>
+        <form id="campaign-form">
+          <label>Nome da campanha<input name="name" required placeholder="Ex.: Lançamento de inverno" /></label>
+          <div class="form-row"><label>Cliente<input name="client" required placeholder="Empresa atendida" /></label><label>Serviço<select name="service"><option>Social media</option><option>Tráfego pago</option><option>Conteúdo</option><option>Branding</option><option>Assessoria completa</option></select></label></div>
+          <div class="form-row"><label>Status<select name="status"><option>Em andamento</option><option>Em revisão</option><option>Planejamento</option></select></label><label>Próxima entrega<input name="next" required placeholder="Ex.: Relatório mensal" /></label></div>
+          <div class="modal-actions"><button type="button" class="button secondary" data-close-modal="campaign-modal">Cancelar</button><button type="submit" class="button primary">Adicionar campanha</button></div>
+        </form>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
